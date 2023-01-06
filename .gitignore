@@ -1,0 +1,6 @@
+*.alias
+node_modules
+fonts/
+imgs/
+.DS_Store
+compare-performance/
