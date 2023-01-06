@@ -2,12 +2,17 @@
 
 - [コーディングについて](#コーディングについて)
   - [CSS設計](#css設計)
+    - [CSS設計\_\_ってなに？](#css設計__ってなに)
     - [CSS設計\_\_なぜ必要なのか](#css設計__なぜ必要なのか)
     - [CSS設計\_\_具体的にどうすればいいの？](#css設計__具体的にどうすればいいの)
     - [CSS設計\_\_練習方法](#css設計__練習方法)
   - [命名規則](#命名規則)
     - [命名規則\_\_html, CSS](#命名規則__html-css)
     - [命名規則\_\_JavaScript](#命名規則__javascript)
+    - [命名規則\_\_コミットメッセージ](#命名規則__コミットメッセージ)
+      - [コミットメッセージ\_\_例--バグ修正](#コミットメッセージ__例--バグ修正)
+      - [コミットメッセージ\_\_例--機能追加](#コミットメッセージ__例--機能追加)
+      - [コミットメッセージ\_\_例--その他](#コミットメッセージ__例--その他)
     - [命名規則\_\_その他](#命名規則__その他)
       - [ケバブケース？キャメルケース？](#ケバブケースキャメルケース)
   - [レスポンシブ対応](#レスポンシブ対応)
@@ -16,6 +21,10 @@
 ## CSS設計
 
 [FLOCSS](https://github.com/hiloki/flocss)に基づいた設計を推奨します。
+
+### CSS設計__ってなに？
+
+TODO: 詳細は後ほど追加！！
 
 ### CSS設計__なぜ必要なのか
 
@@ -33,65 +42,102 @@ TODO: 詳細は後ほど追加！！
 
 ### 命名規則__html, CSS
 
-- [MindBEMding](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)に準拠した命名を推奨します。
+- 原則として、[MindBEMding](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)に準拠した命名を行う。
   > BEMの概念については[こちら](https://github.com/juno/bem-methodology-ja/blob/master/definitions.md)へ。
 
-  ```txt
+  ```text
   block
   block__element
   block__element--modifier
   ```
 
-- **ケバブケースを使用する。小文字での記述を厳守。**
+- **スネークケースを使用する。小文字での記述を厳守。**
 
-  ブロック名が長くなる際には、キャメルケースではなくケバブケースを使用する。
+  ブロック名が長くなる際には、ケバブケースではなくハイフンで繋げる。
 
-  ```txt
+  ```text
   BAD   : namingSample
 
   GOOD  : naming-sample
   ```
 
-  ただし、JavaScriptのイベント追加用途などであればケバブケースで記述する。\
+  ただし、JavaScriptのイベント追加用途などであればキャメルケースで記述する。（= JSと規則を合わせるため）\
   この際、接頭辞には`js-`を付与する。
 
-  ```txt
+  ```text
   js-placeholderText
   ```
 
-- **原則、単語の省略は許容しない。**
-  > スペルミスに直結する上、意図の読み取りに時間がかかるので、特に多人数で作業する環境においては著しく効率が下がる可能性が高い。\
-  > 各個人で略称にも差異が発生するため、無理に省略表記を統一するよりも「省略しない」選択をした方が効率的。
+- 原則、単語の省略は許容しない。
+  > スペルミスに直結する上、意図の読み取りに時間がかかるため、効率が落ちる。（特に複数人で作業を行う時）
 
 ### 命名規則__JavaScript
 
 - **キャメルケースを使用する。**
 
-  JavaScriptの命名規則においてはキャメルケースが一般的です。
-
-  ```txt
+  ```text
   BAD   : naming-sample
 
   GOOD  : namingSample
   ```
 
-- **値をハードコードしている変数（= 定数）に関しては、すべて大文字の単語を使用してスネークケースを用いる。**
+- 値をハードコードしている変数（= 定数）に関しては、すべて大文字の変数名を使用する。
 
-  ```txt
+  ```text
   umm   : mobileScreenWidth = 768;
 
   GOOD  : MOBILE_SCREEN_WIDTH = 768;
   ```
 
-- **ファイル名に関しては、種類毎に接頭辞を付与する。**
+- ファイル名に関しては、種類毎に接頭辞を付与する。
 
-  ```txt
+  ```text
   General         : file.js
 
   Web Components  : wc_file.js
 
   ES Module       : m_file.js
   ```
+
+### 命名規則__コミットメッセージ
+
+Gitのコミットメッセージを記述する際のルールには[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)を推奨します。\
+細かいルールに関しては、各自↑のドキュメントを読んでください。
+
+```text
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+#### コミットメッセージ__例--バグ修正
+
+```text
+fix: ~~の修正
+
+XXの事象の原因となっていた○○を解消した。
+```
+
+#### コミットメッセージ__例--機能追加
+
+```text
+feat: ~~の追加
+
+XXの機能を追加した。
+```
+
+#### コミットメッセージ__例--その他
+
+前述した`fix`, `feat`以外は自由にTypeを作って良さそうなので、\
+ちょっとした修正や、`README.md`の改訂等には↓を使ったりしています。
+
+```text
+modified: README.mdの改訂
+
+~~の記述を追記。
+```
 
 ### 命名規則__その他
 
@@ -194,6 +240,11 @@ TODO: 詳細は後ほど追加！！
   }
 }
 ```
+
+少し敷居が高い方法ではありますが、**OOCSS**という設計手法を軽く学んでおくと良いでしょう。
+
+JP: [OOCSSの基本](https://www.codegrid.net/articles/2014-css-template-1/)\
+EN: [Object Oriented CSS](https://github.com/stubbornella/oocss/wiki)
 
 ### レスポンシブ対応__参考ページ
 
